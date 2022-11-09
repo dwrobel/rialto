@@ -211,6 +211,7 @@ bool SessionServerApp::spawnSessionServer()
         const std::string appName{getSessionServerPath()};
         const std::string appMgmtSocketStr{std::to_string(m_socks[0])};
         char *const appArguments[] = {strdup(appName.c_str()), strdup(appMgmtSocketStr.c_str()), nullptr};
+        RIALTO_SERVER_MANAGER_LOG_DEBUG("PID: %d, executing: \"%s\" \"%s\"", getpid(), appName.c_str(), appMgmtSocketStr.c_str());
         execve(appName.c_str(), appArguments, m_environmentVariables.data());
         RIALTO_SERVER_MANAGER_LOG_SYS_ERROR(errno, "Unable to spawn RialtoSessionServer - execve problem");
         for (char *arg : appArguments)
