@@ -103,7 +103,6 @@ bool SessionServerApp::launch()
         RIALTO_SERVER_MANAGER_LOG_ERROR("Failed to launch: %s - unable to initialize sockets", m_kAppId.c_str());
         return false;
     }
-    setupStartupTimer();
     bool result = spawnSessionServer();
     close(m_socks[0]);
     m_socks[0] = -1;
